@@ -1,5 +1,5 @@
 "use client";
-import { copy, linkIcon, loader } from "@/assets";
+import { copy, linkIcon, loader, tick } from "@/assets";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { useLazyGetSummaryQuery } from "@/services/article";
@@ -11,6 +11,7 @@ const Demo = () => {
     summary: "",
   });
   const [allArticles, setAllArticles] = React.useState<Array<unknown>>([]);
+  const [copied, setCopied] = React.useState('');
   const [getSummary, { data, isFetching, isLoading, error }] =
     useLazyGetSummaryQuery();
 
@@ -36,6 +37,15 @@ const Demo = () => {
     }
     console.log("🚀 ~ file: Demo.tsx:18 ~ handleSubmit ~ Article:", article);
     console.log(data);
+  };
+
+  const handleCopy = (copyurl: string) => {
+    if (copyurl) setCopied(copyurl);
+
+    navigator.clipboard.writeText(article.summary);
+    setTimeout(() => {
+      setCopied('');
+    }, 5000);
   };
 
   return (
@@ -77,9 +87,9 @@ const Demo = () => {
               onClick={() => setArticle(article)}
               className="link_card"
             >
-              <div className="copy_btn">
+              <div className="copy_btn" onClick={() => handleCopy(article.url)}>
                 <Image
-                  src={copy}
+                  src={copied === article.url ? tick : copy}
                   alt="copy icon"
                   className="w-[40%] h-[40%] object-contain"
                 />
@@ -118,7 +128,7 @@ const Demo = () => {
                 <p className="font-inter font-medium text-gray-600 text-sm">
                   {article.summary}
                 </p>
-                </div>
+              </div>
             </div>
           )
         )}
