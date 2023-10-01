@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import { logo } from "../assets";
 import Image from "next/image";
@@ -8,7 +10,9 @@ const Hero = () => {
       <nav className="flex justify-between items-center w-full mb-10 pt-3">
         <Image src={logo} alt="logo" className="w-32 object-contain" />
 
-        <button className="bg-black text-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-900">
+        <button className="bg-black text-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-900"
+        onClick={() => window.open("https://github.com/prajwalr308/summarize-next", "_blank")}
+        >
           github
         </button>
       </nav>
