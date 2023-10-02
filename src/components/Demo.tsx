@@ -35,8 +35,7 @@ const Demo = () => {
 
       localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
     }
-    console.log("🚀 ~ file: Demo.tsx:18 ~ handleSubmit ~ Article:", article);
-    console.log(data);
+   
   };
 
   const handleCopy = (copyurl: string) => {
@@ -50,7 +49,6 @@ const Demo = () => {
 
   return (
     <section className="mt-16 w-full max-w-xl">
-      {/* search */}
       <div className="flex flex-col w-full gap-2">
         <form
           className="relative flex justify-center items-center"
@@ -102,7 +100,6 @@ const Demo = () => {
         </div>
       </div>
 
-      {/* summary */}
       <div className="my-10 max-w-full flex justify-center items-center">
         {isFetching || isLoading ? (
           <Image
