@@ -11,7 +11,8 @@ const Demo = () => {
     summary: "",
   });
   const [allArticles, setAllArticles] = React.useState<Array<unknown>>([]);
-  const [copied, setCopied] = React.useState('');
+  const [copied, setCopied] = React.useState("");
+
   const [getSummary, { data, isFetching, isLoading, error }] =
     useLazyGetSummaryQuery();
 
@@ -35,15 +36,13 @@ const Demo = () => {
 
       localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
     }
-   
   };
 
   const handleCopy = (copyurl: string) => {
     if (copyurl) setCopied(copyurl);
-
     navigator.clipboard.writeText(article.summary);
     setTimeout(() => {
-      setCopied('');
+      setCopied("");
     }, 5000);
   };
 
